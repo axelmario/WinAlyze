@@ -1,43 +1,51 @@
 src/
   components/
     common/
-      ApiMonitor.jsx
+      ErrorMessage.jsx            # Componente per messaggi di errore
+      LoadingIndicator.jsx        # Componente per indicatori di caricamento
     features/
       league/
-        LeagueLayout.jsx
+        LeagueLayout.jsx          # Layout principale della pagina campionato
         components/
-          LeagueHeader.jsx
+          LeagueHeader.jsx        # Intestazione con navigazione
+          MatchView.jsx           # Vista dettaglio partita
+          MainContent.jsx         # Contenitore per le viste principali
         utils/
-          league.js
+          league.js               # Utility per i campionati
       leagues/
-        LeagueSelector.jsx
+        LeagueSelector.jsx        # Componente per selezionare i campionati
       matches/
-        MatchdayComponent.jsx
+        MatchdayComponent.jsx     # Componente per visualizzare le partite di una giornata
         components/
-          MatchCard.jsx
-          MatchdaySelector.jsx
+          MatchCard.jsx           # Card per visualizzare una singola partita
+          MatchdaySelector.jsx    # Selettore delle giornate
+          MatchesByDateList.jsx   # Lista delle partite raggruppate per data
         hooks/
-          useFixtures.js
-      compare/
-        CompareComponent.jsx
-        components/
-          StatsGrid.jsx
-          CollapsibleInsights.jsx
-        hooks/
-          useTeamAnalysis.js
-      analysis/
-        AnalysisComponent.jsx
-        components/
-          TeamMatches.jsx
-          ValueBadge.jsx
-          StakeLegend.jsx
-        hooks/
-          useAnalysis.js
+          useFixtures.js          # Hook per recuperare le partite
         utils/
-          analysis.js
+          matchday-utils.js       # Utility per la gestione delle giornate
+          date-formatter.js       # Utility per la formattazione delle date
+      compare/
+        CompareComponent.jsx      # Componente per confrontare le squadre
+        components/
+          StatsGrid.jsx           # Griglia per visualizzare statistiche
+          StatBar.jsx             # Barra per confrontare statistiche
+        hooks/
+          useTeamAnalysis.js      # Hook per analizzare le squadre
+        utils/
+          stats.js                # Costanti e utility per le statistiche
   services/
-    supabase-service.js
+    supabase-client.js            # Client Supabase inizializzato
+    cache-service.js              # Servizio per la gestione della cache
+    supabase-service.js           # Servizio principale per accedere al database
+    queries/
+      league-queries.js           # Query per i campionati
+      fixture-queries.js          # Query per le partite
+      team-queries.js             # Query per le squadre
   pages/
-    index.js
+    index.js                      # Pagina principale (homepage)
     league/
-      [id].js
+      [id].js                     # Pagina dettaglio campionato (dinamica)
+    debug.js                      # Pagina di debug per visualizzare dati del DB
+  styles/
+    globals.css                   # Stili globali CSS (inclusi Tailwind)
