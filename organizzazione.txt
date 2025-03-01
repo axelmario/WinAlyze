@@ -34,6 +34,17 @@ src/
           useTeamAnalysis.js      # Hook per analizzare le squadre
         utils/
           stats.js                # Costanti e utility per le statistiche
+      analysis/                   # NUOVA CARTELLA per funzionalità di analisi
+        AnalysisComponent.jsx     # Componente principale per analisi
+        components/
+          TeamMatches.jsx         # Componente per visualizzare le partite di una squadra
+          ValueBadge.jsx          # Badge per indicare valore di scommessa
+          ModeSelector.jsx        # Selettore di modalità (UO_SQUAD, UO_MATCH, 1X2)
+        hooks/
+          useAnalysis.js          # Hook per caricare e gestire i dati di analisi
+          useAnalysisAutofill.js  # Hook per suggerire linee automaticamente
+        utils/
+          analysis.js             # Utility e costanti per l'analisi
   services/
     supabase-client.js            # Client Supabase inizializzato
     cache-service.js              # Servizio per la gestione della cache

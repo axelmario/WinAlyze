@@ -2,13 +2,18 @@
 import { MatchdayComponent } from '../../matches/MatchdayComponent';
 
 export function MainContent({ activeView, leagueApiId, onMatchSelect }) {
+  // Modifica la funzione onMatchSelect per passare 'confronto' come vista di default
+  const handleMatchSelect = (match) => {
+    onMatchSelect(match, 'confronto'); // Passa 'confronto' come vista di default
+  };
+
   const renderContent = () => {
     switch (activeView) {
       case 'giornata':
         return (
           <MatchdayComponent 
             leagueId={leagueApiId}
-            onMatchSelect={onMatchSelect}
+            onMatchSelect={handleMatchSelect} // Usa la nuova funzione qui
           />
         );
       case 'classifica':

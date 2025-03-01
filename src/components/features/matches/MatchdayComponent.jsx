@@ -31,7 +31,15 @@ export function MatchdayComponent({ onMatchSelect, leagueId }) {
       return groups;
     }
     
-    currentFixtures.forEach(match => {
+    // Ordina prima le partite per data
+    const sortedFixtures = [...currentFixtures].sort((a, b) => {
+      const dateA = new Date(a.fixture.date);
+      const dateB = new Date(b.fixture.date);
+      return dateA - dateB; // Ordine crescente per data/ora
+    });
+    
+    // Ora raggruppa le partite ordinate
+    sortedFixtures.forEach(match => {
       if (!match || !match.fixture || !match.fixture.date) return;
       
       const date = new Date(match.fixture.date);
@@ -76,26 +84,30 @@ export function MatchdayComponent({ onMatchSelect, leagueId }) {
 
 // Componente per visualizzare le partite raggruppate per data
 function MatchesByDateList({ groupedMatches, onMatchSelect }) {
+  // Ordina le date in ordine cronologico
+  const sortedDates = Object.keys(groupedMatches).sort();
+  
   return (
     <div className="space-y-8">
-      {Object.entries(groupedMatches).map(([dateKey, { dayName, matches }]) => (
-        <div key={dateKey} className="space-y-4">
-          <h2 className="text-xl font-bold text-gray-900 border-b pb-2">
-            {dayName}
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {matches
-              .sort((a, b) => new Date(a.fixture.date) - new Date(b.fixture.date))
-              .map((match) => (
+      {sortedDates.map(dateKey => {
+        const { dayName, matches } = groupedMatches[dateKey];
+        return (
+          <div key={dateKey} className="space-y-4">
+            <h2 className="text-xl font-bold text-gray-900 border-b pb-2">
+              {dayName}
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {matches.map((match) => (
                 <MatchCard 
                   key={match.fixture.id} 
                   match={match} 
                   onSelect={onMatchSelect}
                 />
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }

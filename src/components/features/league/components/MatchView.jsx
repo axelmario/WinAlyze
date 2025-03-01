@@ -1,6 +1,7 @@
 // src/components/features/league/components/MatchView.jsx
 import { useState } from 'react';
 import { CompareComponent } from '@/components/features/compare/CompareComponent';
+import { AnalysisComponent } from '@/components/features/analysis/AnalysisComponent';
 
 export function MatchView({ match, matchView, setMatchView, onBack }) {
   return (
@@ -45,11 +46,7 @@ export function MatchView({ match, matchView, setMatchView, onBack }) {
           {matchView === 'confronto' ? (
             <CompareComponent match={match} />
           ) : (
-            <div className="p-6">
-              <h3 className="text-xl text-center text-gray-500">
-                Funzionalità di analisi in sviluppo
-              </h3>
-            </div>
+            <AnalysisComponent match={match} />
           )}
         </div>
       </div>
